@@ -1,0 +1,10 @@
+{
+    "root": "dist/frontend",
+    "cleanUrls": true,
+    "routes": {
+      "/auth/*": "https://fromages-web-app.onrender.com/auth/",
+      "/venta/*": "https://fromages-web-app.onrender.com/venta/",
+      "/reporte/*": "https://fromages-web-app.onrender.com/reporte/"
+    }
+  }
+  

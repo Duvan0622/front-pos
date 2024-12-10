@@ -1,0 +1,318 @@
+* {
+    margin: 3px;
+    box-sizing: border-box;
+}
+
+/* Contenedor principal */
+.container {
+    display: grid;
+    margin: 90px 150px 0 150px;
+}
+
+/* Cabecera */
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    color: #e2d1c0;
+    background-color: black;
+    padding: 10px 15px;
+    font-weight: bolder;
+    font-size: x-large;
+    border-radius: 15px;
+}
+
+/* Contenido principal */
+.main-content {
+    display: flex;
+}
+
+/* Sección izquierda */
+.left-section {
+    flex-grow: 1;
+    flex-basis: 200;
+    width: 60%;
+    padding: 10px;
+    height: 750px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px #e2d1c0;
+}
+
+.top-lsec {
+    flex-grow: 1;
+    flex-basis: 200;
+    display: grid;
+}
+
+.dateinfo {
+    display: flex;
+    justify-content: end;
+    justify-items: end;
+}
+
+.clidata{
+    display: flex; 
+    flex-grow: 1;
+    flex-basis: 200;
+    margin: 0 30px;
+}
+
+.inputDoc{
+    width: 150px; 
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 30px;
+    font-size: medium;
+}
+
+.client-info{
+    display: flex; 
+    align-items: center; 
+    justify-items: center;
+    align-content: center;
+}
+
+/* Sección derecha */
+.right-section {
+    display: grid;
+    width: 40%;
+    height: 750px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px 2px #e2d1c0;
+}
+
+/* Etiquetas y textos */
+.label {
+    font-size: x-large;
+    font-weight: 500;
+}
+
+span{
+    font-weight: 400;
+    margin: 7px 0 0 5px;
+    font-size: large;
+}
+
+.sub-lab {
+    font-size: large;
+    font-weight: 500;
+    margin: 5px 0 0 20px;
+}
+
+/* Sección intermedia izquierda */
+.middle-left {
+    height: 63%;
+    margin:10px 0;
+}
+
+.tabla {
+    justify-content: center;
+    justify-items: center;
+    height: 98%;
+    margin: 10px;
+    overflow-y: auto;
+}
+
+.productls {
+    width: 95%;
+    border-collapse: collapse; 
+    border: 1px solid;
+}
+
+.productls thead {
+    position: sticky;
+    top: 0;
+    background-color: #e2d1c0;
+    z-index: 1;
+}
+
+.productls th {
+    margin: 0;
+    padding: 15px 15px;
+    font-size: 1.5vh;
+    font-weight: 400;
+}
+
+.productls td {
+    border-bottom: 1px solid #e0e0e0;
+}
+.productls tbody{
+    height: 350px; 
+}
+
+.productls tbody tr {
+    height: 60px;
+    text-align: center; 
+    font-size: 1.5vh;
+    cursor: pointer; 
+    border-radius: 20px;
+}
+
+.productls tbody tr:hover {
+    background-color: #e2d1c05b;;
+}
+
+.total-calc {
+    align-items: center;
+    font-size: 2vh;
+}
+
+/* Botones inferiores */
+.bottom-left {
+    display: flex;
+    justify-content: end;
+    height: 10%;
+}
+
+.bottom-left-item {
+    width: 25%;
+    background-color: #753b43;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.5vh;
+}
+
+.bottom-left-item:hover {
+    background-color: #6a2d35; 
+    transform: scale(1.05); 
+}
+
+/* Sección de búsqueda */
+.search-section {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: #e2d1c0;
+}
+
+.filter-select {
+    margin-right: 10px; 
+    padding: 2%; 
+    border-radius: 30px; 
+    background-color: white;
+    font-weight: bolder;
+    font-size: 1.5vh;
+    border: #e2d1c0;
+    color: #753b43;
+}
+
+.search-bar {
+    width: 50%; 
+    padding: 15px; 
+    border: 1px solid black;
+    border-radius: 30px; 
+    margin-right: 10px; 
+    font-size: 1.5vh;
+}
+
+/* Tabla de productos */
+.table-section {         
+    justify-items: center;
+    height: 450px;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.table-prod {
+    border-collapse: collapse; 
+    border: 1px solid;
+}
+
+.table-prod thead {
+    position: sticky; 
+    top: 0;           
+    z-index: 1;  
+    background-color: #e2d1c0;  
+}
+
+.table-prod th,
+.table-prod td {
+    font-weight: 400;
+    text-align: center; 
+    padding: 15px 40px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.table-prod tbody tr:hover {
+    background-color: #e2d1c05b;
+}
+
+/* Sección de agregar producto */
+.add-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    font-weight: 400;
+}
+
+.quantity-input {
+    text-align: center;
+    width: 70px; 
+    padding: 8px; 
+    margin-left: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px; 
+    font-size: large;
+}
+
+/* Mensajes de error */
+.error {
+    position: fixed; 
+    top: 10px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background-color: rgba(255, 0, 0, 0.8); 
+    color: white; 
+    padding: 10px 20px;
+    border-radius: 5px; 
+    font-weight: 400; 
+    font-size: 14px; 
+    z-index: 1000; 
+    text-align: center; 
+    animation: fadeOut 1600ms forwards;
+}
+
+.action-cell {
+    position: relative;
+    text-align: center;
+  }
+  
+  .delete-icon {
+    cursor: pointer;
+    width: 32px; /* Tamaño del icono */
+    height: 32px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+  
+  tr:hover .delete-icon {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .productls tfoot {
+    position: sticky;
+    bottom: 0;
+    background-color: #f9f9f9; /* Fondo para que destaque */
+    z-index: 1;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombras para separar visualmente */
+}
+
+.productls tfoot td {
+    font-weight: bold;
+    font-size: 1.8vh;
+    padding: 15px;
+    text-align: right;
+}

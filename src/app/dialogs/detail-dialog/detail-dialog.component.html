@@ -1,0 +1,54 @@
+<mat-dialog-content>
+  <p><strong>Sucursal:</strong> {{ data.sucursalNombre }}</p>
+  <p><strong>Fecha:</strong> {{ facturaData?.fecha | date:'short' }} | <strong>Número de Factura:</strong> {{ facturaData?.numero_factura }}</p>
+  <p><strong>Vendedor:</strong> {{ facturaData?.vendedor_nombre || 'No asignado' }}</p>
+  <p><strong>Cliente:</strong> {{ facturaData?.cliente_nombre }} | <strong>Documento:</strong> {{ facturaData?.cliente_documento }}</p>
+
+  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Código Producto -->
+    <ng-container matColumnDef="producto_id">
+      <th mat-header-cell *matHeaderCellDef> Código Producto </th>
+      <td mat-cell *matCellDef="let element"> {{ element.producto_id }} </td>
+      <td mat-footer-cell *matFooterCellDef class="footer-cell"> <strong>Total</strong> </td>
+    </ng-container>
+
+    <!-- Nombre Producto -->
+    <ng-container matColumnDef="producto_nombre">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let element"> {{ element.producto_nombre }} </td>
+      <td mat-footer-cell *matFooterCellDef class="footer-cell"></td>
+    </ng-container>
+
+    <!-- Cantidad -->
+    <ng-container matColumnDef="cantidad">
+      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+      <td mat-cell *matCellDef="let element"> {{ element.cantidad }} </td>
+      <td mat-footer-cell *matFooterCellDef class="footer-cell"></td>
+    </ng-container>
+
+    <!-- Precio Unitario -->
+    <ng-container matColumnDef="precio_unitario">
+      <th mat-header-cell *matHeaderCellDef> Precio Unitario </th>
+      <td mat-cell *matCellDef="let element"> {{ element.precio_unitario }} </td>
+      <td mat-footer-cell *matFooterCellDef class="footer-cell"></td>
+    </ng-container>
+
+    <!-- Precio Total -->
+    <ng-container matColumnDef="precio_total">
+      <th mat-header-cell *matHeaderCellDef> Precio Total </th>
+      <td mat-cell *matCellDef="let element"> {{ element.precio_total }} </td>
+      <td mat-footer-cell *matFooterCellDef class="footer-cell"> <strong>{{ total }}</strong> </td>
+    </ng-container>
+
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+    
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
+  
+  <button mat-button class="search-button" (click)="close()">Cerrar</button>
+</mat-dialog-content>

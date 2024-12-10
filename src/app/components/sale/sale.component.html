@@ -1,0 +1,155 @@
+<div class="container">
+  <div class="header">
+      <h1 class="title">Venta</h1>
+  </div>
+  <div class="main-content">
+      <div class="left-section">
+          <div class="top-lsec">
+            <div class="dateinfo">
+                <span class="sub-lab">Fecha: </span>
+                <span>{{ formattedDate }}</span>
+            </div>
+            <div class="header">
+              <h2 class="label">Factura</h2>
+          </div>
+            <div class="clidata">
+              <h2 class="label">Buscar Cliente</h2>
+            </div>
+            <div class="clidata">
+              <label for="documento" class="sub-lab">Documento:</label>
+              <input 
+                class= "inputDoc"
+                type="text" 
+                id="documento" 
+                [(ngModel)]="documento" 
+                placeholder="Ingrese Doc." 
+                (input)="onSearchClient()">
+                <div class="client-info" *ngIf="cliente">
+                  <span class="sub-lab">Nombre:</span>
+                  <span>{{ cliente.nombre }}</span>
+              
+                  <span class="sub-lab">Telefono:</span>
+                  <span>{{ cliente.celular }}</span>
+                </div>
+                <!-- Mensaje de error si el cliente no se encuentra -->
+                <div *ngIf="errorMessage" class="error">
+                  <p>{{ errorMessage }}</p>
+                </div>
+            </div>
+          </div>
+
+          <div class="middle-left">
+              <div class="tabla">
+                <table class="productls">
+                  <thead>
+                    <tr>
+                      <th>Cantidad</th>
+                      <th>Producto</th>
+                      <th>Precio Unitario</th>
+                      <th>Subtotal</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr 
+                      *ngFor="let item of addedProducts; let i = index" 
+                      (mouseenter)="showDeleteIcon(i)" 
+                      (mouseleave)="hideDeleteIcon(i)"
+                    >
+                      <td (click)="editQuantity(i)">
+                        <ng-container *ngIf="editIndex !== i">
+                          {{ item.cantidad }}
+                        </ng-container>
+                        <ng-container *ngIf="editIndex === i">
+                          <input class="quantity-input" 
+                          type="number"
+                          min="1" 
+                          [(ngModel)]="item.cantidad" 
+                          (blur)="saveQuantity(i)" />
+                        </ng-container>
+                        <div *ngIf="errorMessagei" class="error">
+                          <p>{{ errorMessagei }}</p>
+                        </div>
+                      </td>
+                      <td>{{ item.product.nombre }}</td>
+                      <td>{{ item.product.precio | currency }}</td>
+                      <td>{{ item.cantidad * item.product.precio | currency }}</td>
+                      <td class="action-cell">
+                        <img 
+                          src="borrar.png" 
+                          alt="Eliminar" 
+                          class="delete-icon" 
+                          [class.visible]="hoveredRow === i" 
+                          (click)="removeProduct(i)"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="3" class="total-label">Total</td>
+                      <td colspan="2" class="total-value">{{ calculateTotal() | currency }}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+          </div>
+          <div class="bottom-left">
+              <div class="bottom-left-item" (click)="guardarFactura()">FACTURAR</div>
+              <div class="bottom-left-item" (click)="resetForm()">CANCELAR</div>
+          </div>
+      </div>
+
+      <div class="right-section">
+          <div class="header">
+              <h2 class="label">Selecciona Productos</h2>
+          </div>
+          <div class="search-section">
+              <select class="filter-select" [(ngModel)]="selectedFilter">
+                <option value="nombre">Nombre</option>
+                <option value="id">Código</option>
+              </select>
+              <input
+                type="text"
+                class="search-bar"
+                placeholder="Buscar..."
+                [(ngModel)]="searchText"
+                (ngModelChange)="filterProducts()" />
+            </div>
+            <div class="table-section">
+              <div>
+                <table class="table-prod">
+                  <thead>
+                    <tr>
+                      <th>Código</th>
+                      <th>Nombre</th>
+                      <th>Precio</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      *ngFor="let product of filteredData"
+                      (click)="selectAndAddProduct(product, quantity)">
+                      <td>{{ product.id }}</td>
+                      <td>{{ product.nombre }}</td>
+                      <td>{{ product.precio | currency }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="add-section">
+                    <label for="quantity">Ingresa la cantidad:</label>
+                    <input type="number" 
+                            id="quantity" 
+                            name="quantity" 
+                            min="1" 
+                            [(ngModel)]="quantity" 
+                            class="quantity-input">
+            </div>
+            <div *ngIf="errorMessagep" class="error">
+              <p>{{ errorMessagep }}</p>
+            </div>
+      </div>
+  </div>
+</div>

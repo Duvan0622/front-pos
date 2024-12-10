@@ -1,0 +1,72 @@
+<div class="container">
+  <h2>Consulta facturas por rango de fechas</h2>
+
+  <div class="search-container">
+    <form (ngSubmit)="onSubmit()" class="search-container">
+      <div class="search-group">
+        <label for="startDate">Fecha de inicio:</label>
+        <mat-form-field appearance="fill">
+          <input matInput [matDatepicker]="picker" [(ngModel)]="startDate" name="startDate" id="startDate" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      
+
+      <div class="search-group">
+        <label for="endDate">Fecha de fin:</label>
+        <mat-form-field appearance="fill">
+          <input matInput [matDatepicker]="pickerEnd" [(ngModel)]="endDate" name="endDate" id="endDate" required>
+          <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+          <mat-datepicker #pickerEnd></mat-datepicker>
+        </mat-form-field>
+      </div>
+      
+
+              <button type="submit" class="search-button">Consultar</button>
+    </form>
+  </div>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      
+      
+      <ng-container matColumnDef="numero_factura">
+        <th mat-header-cell *matHeaderCellDef>{{ columnHeaders['numero_factura'] }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.numero_factura }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef>{{ columnHeaders['fecha'] }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.fecha | date: 'short' }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="cliente_nombre">
+        <th mat-header-cell *matHeaderCellDef>{{ columnHeaders['cliente_nombre'] }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.cliente_nombre }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef>{{ columnHeaders['total'] }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.total }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="detalle">
+        <th mat-header-cell *matHeaderCellDef>{{ columnHeaders['detalle'] }}</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button  class="custom-button" (click)="openInvoiceDetail(element.numero_factura)">Ver Detalle</button>
+
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Seleccionar página de facturas"
+    ></mat-paginator>
+  </div>
+</div>

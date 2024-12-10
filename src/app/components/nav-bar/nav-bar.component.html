@@ -1,0 +1,43 @@
+<mat-toolbar *ngIf="showNavbar()" class="navbar">
+  <div class="left-section">
+    <a (click)="navigateToHome()" style="cursor: pointer;">
+      Fromages
+      <img src="quesito.png" class="logo-png">
+    </a>
+    <div class="center-section">
+      <a
+        mat-button
+        (click)="navigateTo('home')"
+        aria-label="Ir a la página de inicio"
+        class="icon-link"
+        *ngIf="canShowHome()"
+      >
+        <mat-icon class="custom-icon">home</mat-icon>
+      </a>
+      <a
+        mat-button
+        (click)="navigateTo('sale')"
+        aria-label="Ir a la página de ventas"
+        class="icon-link"
+        *ngIf="canShowSale()"
+      >
+        <mat-icon class="custom-icon">store</mat-icon>
+      </a>
+    </div>
+  </div>
+
+  <div class="right-section">
+    <span *ngIf="userName" class="user-name">{{ userName }}</span>
+    <div class="icon-container">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu de usuario">
+        <mat-icon class="icon-size">account_circle</mat-icon>
+      </button>
+    </div>
+    <mat-menu #menu="matMenu">
+      <button (click)="logout()" mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar sesión</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

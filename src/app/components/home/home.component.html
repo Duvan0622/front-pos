@@ -1,0 +1,10 @@
+<div class="container">
+  <ng-container *ngFor="let item of items">
+    <a *ngIf="canShowItem(item.label)" (click)="onBoxClick(item)" [routerLink]="item.route">
+      <div>
+        <mat-icon>{{ item.label === 'Productos' ? 'store' : item.label === 'Venta' ? 'shopping_cart' : item.label === 'Reporte' ? 'bar_chart' : 'receipt' }}</mat-icon>
+        <p>{{ item.label }}</p>
+      </div>
+    </a>
+  </ng-container>
+</div>
